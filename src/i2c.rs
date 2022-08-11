@@ -190,7 +190,7 @@ impl<'a, Device: FtdiCommon> I2c<'a, Device> {
             .set_gpio_lower(inner.value, inner.direction)
             .send_immediate();
 
-        inner.ft.write_all(&mpsse_cmd.as_slice())?;
+        inner.ft.write_all(mpsse_cmd.as_slice())?;
         let mut ack_buf: [u8; 1] = [0; 1];
         inner.ft.read_all(&mut ack_buf)?;
         inner.ft.read_all(buffer)?;
@@ -506,7 +506,7 @@ impl<'a, Device: FtdiCommon> I2c<'a, Device> {
             .set_gpio_lower(inner.value, inner.direction)
             .send_immediate();
 
-        inner.ft.write_all(&mpsse_cmd.as_slice())?;
+        inner.ft.write_all(mpsse_cmd.as_slice())?;
         let mut ack_buf: Vec<u8> = vec![0; 2 + bytes.len()];
         inner.ft.read_all(&mut ack_buf)?;
         inner.ft.read_all(buffer)?;
@@ -639,7 +639,7 @@ impl<'a, Device: FtdiCommon> I2c<'a, Device> {
             .set_gpio_lower(inner.value, inner.direction)
             .send_immediate();
 
-        inner.ft.write_all(&mpsse_cmd.as_slice())?;
+        inner.ft.write_all(mpsse_cmd.as_slice())?;
         inner.ft.read_all(buffer)?;
 
         Ok(())

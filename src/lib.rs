@@ -272,7 +272,7 @@ impl<Device: FtdiCommon + TryFrom<Ftdi, Error = DeviceTypeError> + FtdiMpsse>
             write_timeout: Duration::from_secs(1),
             latency_timer: Duration::from_millis(16),
             mask: 0x00,
-            clock_frequency: Some(100_000),
+            clock_frequency: Some(3_000_000),
         };
 
         self.init(&DEFAULT)
@@ -315,7 +315,7 @@ impl<Device: FtdiCommon + TryFrom<Ftdi, Error = DeviceTypeError> + FtdiMpsse>
             let mut inner = lock.borrow_mut();
             let mut settings = *mpsse_settings;
             settings.mask = inner.direction;
-            inner.ft.initialize_mpsse(&mpsse_settings)?;
+            inner.ft.initialize_mpsse(mpsse_settings)?;
         }
 
         Ok(FtHal {
